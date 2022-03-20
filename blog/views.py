@@ -1,8 +1,9 @@
 from .models import Blog
 from .serializers import  BlogSerializer
 from rest_framework.generics import GenericAPIView, mixins
-from rest_framework.decorators import api_view
+from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from rest_framework import status
 class BlogList(mixins.ListModelMixin,mixins.CreateModelMixin ,GenericAPIView):
@@ -14,27 +15,30 @@ class BlogList(mixins.ListModelMixin,mixins.CreateModelMixin ,GenericAPIView):
     
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+    
+class Edit(APIView):
+    
+    def get_obj(self, pk):
+        return get_object_or_404(Blog, pk=pk)
 
-@api_view(["GET", "PUT", "DELETE"])
-def blog_detail(request, pk):
-
-    if request.method == "GET":
-
-        queryset = Blog.objects.get(id=pk)
-        serializer = BlogSerializer(queryset)
-
+    def get(self, request, pk):
+        blog = self.get_obj(pk)
+        serializer = BlogSerializer(blog)
         return Response(serializer.data)
 
-    elif request.method == "PUT":
-
-        queryset = Blog.objects.get(id=pk)
-        serializer = BlogSerializer(instance=queryset, data=request.data)
-
+    def put(self, request, pk):
+        blog = self.get_obj(pk)
+        serializer = BlogSerializer(instance=blog, data=request.data)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data)
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == "DELETE":
-        queryset = Blog.objects.get(id=pk)
-        queryset.delete()
-        return Response("Item deleted", status=status.HTTP_204_NO_CONTENT)
+    def delete(self, request, pk):
+        todo = self.get_obj(pk)
+        todo.delete()
+        data = {
+            "message": "Blog succesfully deleted."
+        }
+        return Response(data, status=status.HTTP_204_NO_CONTENT)
+
