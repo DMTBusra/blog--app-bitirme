@@ -133,6 +133,3 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = (
     'Access-Control-Allow-Origin: *',
 )
-CORS_ORIGIN_WHITELIST = (
-  'http://localhost:8000',
-)
