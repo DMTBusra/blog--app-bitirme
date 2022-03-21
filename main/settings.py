@@ -44,8 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+   
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -133,3 +132,6 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = (
     'Access-Control-Allow-Origin: *',
 )
+CORS_ORIGIN_WHITELIST={
+    "https://blog-capstonee.herokuapp.com"
+}
