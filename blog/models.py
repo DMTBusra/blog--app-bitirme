@@ -6,7 +6,7 @@ class Blog(models.Model):
     content=models.CharField(max_length=200)
     createdDate = models.DateTimeField(auto_now_add=True)
     upDatedDate=models.DateTimeField(auto_now=True)
-    image=models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None,blank=True)
+    image=models.ImageField(upload_to=None,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
    
     
