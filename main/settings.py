@@ -132,6 +132,6 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = (
     'Access-Control-Allow-Origin: *',
 )
-CORS_ORIGIN_WHITELIST = [
-     'https://blog-capstonee.herokuapp.com'
-]
+# CORS_ORIGIN_WHITELIST = [
+#      'https://blog-capstonee.herokuapp.com'
+# ]
