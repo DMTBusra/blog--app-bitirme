@@ -126,12 +126,9 @@ django_heroku.settings(locals())
 MEDIA_URL = "/media/"
 MEDIA_ROOT =os.path.join(BASE_DIR, 'media')
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_CREDENTIALS = True
 CORS_EXPOSE_HEADERS = (
     'Access-Control-Allow-Origin: *',
 )
-CORS_ORIGIN_WHITELIST=[
-    "https://blog-capstonee.herokuapp.com"
-]
