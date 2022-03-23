@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .serializers import RegisterSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 class RegisterAPI(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
@@ -19,5 +20,7 @@ class RegisterAPI(CreateAPIView):
         headers=self.get_success_headers(serializer.data)
         return Response(data, status=status.HTTP_201_CREATED, headers=headers)
         
-        
-    
+@api_view(['POST'])
+def log_out(request):
+    request.user.auth_token.delete()
+    return Response({"message":"logout"})    

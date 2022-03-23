@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 class BlogList(mixins.ListModelMixin,mixins.CreateModelMixin ,GenericAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
@@ -21,6 +22,7 @@ class Edit(APIView):
         return get_object_or_404(Blog, pk=pk)
 
     def get(self, request, pk):
+        permission_classes=[IsAuthenticatedOrReadOnly]
         blog = self.get_obj(pk)
         serializer = BlogSerializer(blog)
         return Response(serializer.data)
