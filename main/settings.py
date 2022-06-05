@@ -115,7 +115,7 @@ REST_AUTH_SERIALIZERS = {
 REST_FRAMEWORK = {
 #Bunu ise 3 authhentication dan token authentication kullandıgımız için ekledik
 #diğer ikisi basic ve session authentication
-    "DEFAULT_AUTHHENTICATION_CLASSES":["rest_framework.authentication.TokenAuthentication"]
+    "DEFAULT_AUTHENTICATION_CLASSES":["rest_framework.authentication.TokenAuthentication"]
 }
 INTERNAL_IPS = [
     "127.0.0.1",

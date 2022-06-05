@@ -9,9 +9,9 @@ from django.conf import settings
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="quız API",
+        title="blog API",
         default_version="v1",
-        description="Quiz API",
+        description="Blog API",
         terms_of_service="#",
         contact=openapi.Contact(email="gencbusra91@gmail.com"),
         license=openapi.License(name="BSD License"),
